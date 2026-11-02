@@ -12,25 +12,22 @@ import { createTask } from './tasks.js';
 import { loadTasks, saveTasks } from './storage.js';
 import { enableDragAndDrop } from './drag-drop.js';
 
-// Подключение CSS
 const link = document.createElement('link');
 link.rel = 'stylesheet';
 link.href = './src/css/style.css';
 
 document.head.append(link);
 
-// Основной контейнер
 const app = createElement('main', 'app');
 
-// Заголовок
 const header = createElement('header', 'header');
 
-const title = createElement('h1', 'header__title', 'Мои задачи');
+const title = createElement('h1', 'header__title', 'мой планнер');
 
 const subtitle = createElement(
     'p',
     'header__subtitle',
-    'Планируй, выполняй, достигай.'
+    ''
 );
 
 header.append(title, subtitle);
@@ -150,7 +147,7 @@ function createTaskCard(task) {
             const newDate = dateInput.value;
 
             if (!newTitle || !newDate) {
-                alert('Заполните название и дату задачи');
+                alert('заполните название и дату задачи');
                 return;
             }
 

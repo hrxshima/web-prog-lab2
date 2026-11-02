@@ -1,7 +1,6 @@
 
 const STORAGE_KEY = 'todo-tasks';
 
-// Получение задач из localStorage
 export function loadTasks() {
     const savedTasks = localStorage.getItem(STORAGE_KEY);
 
@@ -17,7 +16,6 @@ export function loadTasks() {
     }
 }
 
-// Сохранение задач в localStorage
 export function saveTasks(tasks) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
 }

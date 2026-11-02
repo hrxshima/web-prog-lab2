@@ -18,12 +18,12 @@ export function createTaskForm() {
     const formTitle = createElement(
         'h2',
         'task-form__title',
-        'Новая задача'
+        'новая задача'
     );
 
     const titleInput = createElement('input', 'task-form__input');
     titleInput.type = 'text';
-    titleInput.placeholder = 'Название задачи...';
+    titleInput.placeholder = 'название задачи...';
     titleInput.name = 'title';
     titleInput.required = true;
 
@@ -37,7 +37,7 @@ export function createTaskForm() {
     const submitButton = createElement(
         'button',
         'task-form__button',
-        'Добавить задачу'
+        'добавить задачу'
     );
     submitButton.type = 'submit';
 
@@ -97,7 +97,7 @@ export function createTaskList() {
     const title = createElement(
         'h2',
         'tasks-section__title',
-        'Мои задачи'
+        'мои задачи'
     );
 
     const list = createElement('div', 'tasks-list');
@@ -114,7 +114,7 @@ export function createSearchInput() {
     const searchInput = createElement('input', 'search-input');
 
     searchInput.type = 'search';
-    searchInput.placeholder = 'Поиск задач...';
+    searchInput.placeholder = 'поиск задач...';
     searchInput.name = 'search';
 
     return searchInput;
@@ -124,9 +124,9 @@ export function createTaskFilters() {
     const filters = createElement('div', 'task-filters');
 
     const filterOptions = [
-        { value: 'all', text: 'Все' },
-        { value: 'active', text: 'Активные' },
-        { value: 'completed', text: 'Выполненные' }
+        { value: 'all', text: 'все' },
+        { value: 'active', text: 'активные' },
+        { value: 'completed', text: 'выполненные' }
     ];
 
     filterOptions.forEach(option => {
@@ -154,9 +154,9 @@ export function createTaskSort() {
     const sortSelect = createElement('select', 'task-sort');
 
     const options = [
-        { value: 'manual', text: 'Вручную' },
-        { value: 'asc', text: 'Сначала ближайшие' },
-        { value: 'desc', text: 'Сначала поздние' }
+        { value: 'manual', text: 'вручную' },
+        { value: 'asc', text: 'сначала ближайшие' },
+        { value: 'desc', text: 'сначала поздние' }
     ];
 
     options.forEach(option => {
