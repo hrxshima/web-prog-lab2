@@ -1,3 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #f7e1b6;
+    background-color: #f0dfbd;
+    font-family: Arial, sans-serif;
+    color: #292929;
+}
+
+.app {
+    width: 100%;
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 0 24px;
+}
+
+.header {
+    margin-bottom: 32px;
+}
+
+.header__title {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.header__subtitle {
+    font-size: 15px;
+    color: #777;
 }
