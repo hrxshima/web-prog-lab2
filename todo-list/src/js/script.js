@@ -9,6 +9,7 @@ import {
 } from './dom.js';
 
 import { createTask } from './tasks.js';
+import { loadTasks, saveTasks } from './storage.js';
 
 // Подключение CSS
 const link = document.createElement('link');
@@ -53,7 +54,7 @@ app.append(
 document.body.append(app);
 
 // Массив для хранения задач
-const tasks = [];
+const tasks = loadTasks();
 
 let currentFilter = 'all';
 
@@ -72,11 +73,13 @@ function createTaskCard(task) {
 
     checkbox.addEventListener('change', () => {
         task.completed = checkbox.checked;
-
+    
         taskElement.classList.toggle(
             'task--completed',
             task.completed
         );
+    
+        saveTasks(tasks);
     });
 
     // Удаление задачи
@@ -88,7 +91,8 @@ function createTaskCard(task) {
         if (taskIndex !== -1) {
             tasks.splice(taskIndex, 1);
         }
-
+        
+        saveTasks(tasks);
         renderTasks();
     });
 
@@ -143,7 +147,8 @@ function createTaskCard(task) {
 
             task.title = newTitle;
             task.date = newDate;
-
+            
+            saveTasks(tasks);
             renderTasks();
         });
 
@@ -240,8 +245,11 @@ taskForm.addEventListener('submit', (event) => {
     const task = createTask(title, date);
 
     tasks.push(task);
-
+    
+    saveTasks(tasks);
     renderTasks();
 
     taskForm.reset();
 });
+
+renderTasks();
