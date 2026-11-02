@@ -1,4 +1,4 @@
-import { createElement } from './dom.js';
+import { createElement, createTaskForm } from './dom.js';
 
 // Подключение CSS
 const link = document.createElement('link');
@@ -24,5 +24,9 @@ const subtitle = createElement(
 header.append(title, subtitle);
 
 app.append(header);
+
+const taskForm = createTaskForm();
+
+app.append(taskForm);
 
 document.body.append(app);

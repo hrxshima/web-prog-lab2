@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #f0dfbd;
+    background-color: #f4e8d0;
     font-family: Arial, sans-serif;
     color: #292929;
 }
@@ -30,4 +30,57 @@ body {
 .header__subtitle {
     font-size: 15px;
     color: #777;
+}
+
+.task-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    padding: 24px;
+    margin-bottom: 32px;
+
+    background-color: #ffffff;
+    border-radius: 12px;
+}
+
+.task-form__title {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.task-form__input,
+.task-form__date {
+    width: 100%;
+    padding: 12px 14px;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.task-form__input:focus,
+.task-form__date:focus {
+    outline: 2px solid #b8a58a;
+    border-color: transparent;
+}
+
+.task-form__button {
+    padding: 13px;
+
+    background-color: #292929;
+    color: #ffffff;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.task-form__button:hover {
+    background-color: #454545;
 }
