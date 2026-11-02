@@ -150,3 +150,39 @@ body {
     color: #b44b4b;
     border-color: #e5caca;
 }
+
+.task__edit,
+.task__save,
+.task__cancel {
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.task__edit {
+    background-color: #f5f3ef;
+    border: 1px solid #e5e5e5;
+    color: #555555;
+}
+
+.task__save {
+    background-color: #292929;
+    border: 1px solid #292929;
+    color: white;
+}
+
+.task__cancel {
+    background-color: white;
+    border: 1px solid #e5e5e5;
+    color: #555555;
+}
+
+.task__edit-input,
+.task__edit-date {
+    min-width: 0;
+    padding: 8px;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    font-family: inherit;
+}

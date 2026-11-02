@@ -63,6 +63,13 @@ export function createTaskElement(task) {
     const date = createElement('time', 'task__date', task.date);
     date.dateTime = task.date;
 
+    const editButton = createElement(
+        'button',
+        'task__edit',
+        'Редактировать'
+    );
+    editButton.type = 'button';
+
     const deleteButton = createElement(
         'button',
         'task__delete',
@@ -70,7 +77,13 @@ export function createTaskElement(task) {
     );
     deleteButton.type = 'button';
 
-    article.append(checkbox, title, date, deleteButton);
+    article.append(
+        checkbox,
+        title,
+        date,
+        editButton,
+        deleteButton
+    );
 
     return article;
 }

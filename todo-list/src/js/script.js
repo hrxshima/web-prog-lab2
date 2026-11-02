@@ -86,6 +86,82 @@ taskForm.addEventListener('submit', (event) => {
     
         taskElement.remove();
     });    
+
+    const editButton = taskElement.querySelector('.task__edit');
+
+    editButton.addEventListener('click', () => {
+        const titleInput = document.createElement('input');
+        titleInput.type = 'text';
+        titleInput.value = task.title;
+        titleInput.className = 'task__edit-input';
+    
+        const dateInput = document.createElement('input');
+        dateInput.type = 'date';
+        dateInput.value = task.date;
+        dateInput.className = 'task__edit-date';
+    
+        const saveButton = createElement(
+            'button',
+            'task__save',
+            'Сохранить'
+        );
+        saveButton.type = 'button';
+    
+        const cancelButton = createElement(
+            'button',
+            'task__cancel',
+            'Отмена'
+        );
+        cancelButton.type = 'button';
+    
+        const titleElement = taskElement.querySelector('.task__title');
+        const dateElement = taskElement.querySelector('.task__date');
+    
+        titleElement.replaceWith(titleInput);
+        dateElement.replaceWith(dateInput);
+    
+        editButton.hidden = true;
+        deleteButton.hidden = true;
+    
+        taskElement.append(saveButton, cancelButton);
+    
+        saveButton.addEventListener('click', () => {
+            const newTitle = titleInput.value.trim();
+            const newDate = dateInput.value;
+    
+            if (!newTitle || !newDate) {
+                alert('Заполните название и дату задачи');
+                return;
+            }
+    
+            task.title = newTitle;
+            task.date = newDate;
+    
+            titleElement.textContent = newTitle;
+            dateElement.textContent = newDate;
+            dateElement.dateTime = newDate;
+    
+            titleInput.replaceWith(titleElement);
+            dateInput.replaceWith(dateElement);
+    
+            saveButton.remove();
+            cancelButton.remove();
+    
+            editButton.hidden = false;
+            deleteButton.hidden = false;
+        });
+    
+        cancelButton.addEventListener('click', () => {
+            titleInput.replaceWith(titleElement);
+            dateInput.replaceWith(dateElement);
+    
+            saveButton.remove();
+            cancelButton.remove();
+    
+            editButton.hidden = false;
+            deleteButton.hidden = false;
+        });
+    });
     
     list.append(taskElement);
     
