@@ -10,6 +10,7 @@ import {
 
 import { createTask } from './tasks.js';
 import { loadTasks, saveTasks } from './storage.js';
+import { enableDragAndDrop } from './drag-drop.js';
 
 // Подключение CSS
 const link = document.createElement('link');
@@ -63,6 +64,14 @@ let currentFilter = 'all';
 function createTaskCard(task) {
     const taskElement = createTaskElement(task);
 
+    // Возможность перетаскивания задачи
+    const canDrag =
+        currentFilter === 'all' &&
+        !searchInput.value.trim() &&
+        taskSort.value === 'manual';
+
+    taskElement.draggable = canDrag;
+
     // Отображение выполненной задачи
     if (task.completed) {
         taskElement.classList.add('task--completed');
@@ -73,12 +82,12 @@ function createTaskCard(task) {
 
     checkbox.addEventListener('change', () => {
         task.completed = checkbox.checked;
-    
+
         taskElement.classList.toggle(
             'task--completed',
             task.completed
         );
-    
+
         saveTasks(tasks);
     });
 
@@ -181,19 +190,38 @@ function renderTasks() {
         return matchesSearch && matchesFilter;
     });
 
-    const sortedTasks = [...filteredTasks].sort((a, b) => {
-        if (taskSort.value === 'asc') {
-            return a.date.localeCompare(b.date);
-        }
+    const sortedTasks = [...filteredTasks];
 
-        return b.date.localeCompare(a.date);
-    });
+    if (taskSort.value === 'asc') {
+        sortedTasks.sort((a, b) => a.date.localeCompare(b.date));
+    } else if (taskSort.value === 'desc') {
+        sortedTasks.sort((a, b) => b.date.localeCompare(a.date));
+    }
 
     sortedTasks.forEach(task => {
         const taskElement = createTaskCard(task);
         list.append(taskElement);
     });
 }
+
+// Подключение Drag-and-drop
+enableDragAndDrop(list, () => {
+    const orderedIds = Array.from(list.children).map(
+        element => element.dataset.id
+    );
+
+    const taskMap = new Map(
+        tasks.map(task => [task.id, task])
+    );
+
+    const orderedTasks = orderedIds.map(
+        id => taskMap.get(id)
+    );
+
+    tasks.splice(0, tasks.length, ...orderedTasks);
+
+    saveTasks(tasks);
+});
 
 // Поиск задач при вводе текста
 searchInput.addEventListener('input', () => {

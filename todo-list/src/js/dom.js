@@ -54,6 +54,9 @@ export function createTaskForm() {
 export function createTaskElement(task) {
     const article = createElement('article', 'task');
 
+    article.draggable = true;
+    article.dataset.id = task.id;
+
     const checkbox = createElement('input', 'task__checkbox');
     checkbox.type = 'checkbox';
     checkbox.checked = task.completed;
@@ -146,10 +149,12 @@ export function createTaskFilters() {
     return filters;
 }
 
+
 export function createTaskSort() {
     const sortSelect = createElement('select', 'task-sort');
 
     const options = [
+        { value: 'manual', text: 'Вручную' },
         { value: 'asc', text: 'Сначала ближайшие' },
         { value: 'desc', text: 'Сначала поздние' }
     ];
@@ -162,7 +167,6 @@ export function createTaskSort() {
         );
 
         optionElement.value = option.value;
-
         sortSelect.append(optionElement);
     });
 

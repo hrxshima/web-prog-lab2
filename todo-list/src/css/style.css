@@ -255,3 +255,12 @@ body {
     outline: 2px solid #b8a58a;
     border-color: transparent;
 }
+
+.task[draggable="true"] {
+    cursor: grab;
+}
+
+.task--dragging {
+    opacity: 0.4;
+    cursor: grabbing;
+}
