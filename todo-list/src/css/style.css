@@ -204,3 +204,34 @@ body {
     outline: 2px solid #b8a58a;
     border-color: transparent;
 }
+
+.task-filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+}
+
+.task-filters__button {
+    padding: 10px 16px;
+
+    background-color: transparent;
+    color: #777777;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.task-filters__button:hover {
+    background-color: #eeece7;
+}
+
+.task-filters__button--active {
+    background-color: #292929;
+    color: #ffffff;
+    border-color: #292929;
+}

@@ -116,3 +116,32 @@ export function createSearchInput() {
 
     return searchInput;
 }
+
+export function createTaskFilters() {
+    const filters = createElement('div', 'task-filters');
+
+    const filterOptions = [
+        { value: 'all', text: 'Все' },
+        { value: 'active', text: 'Активные' },
+        { value: 'completed', text: 'Выполненные' }
+    ];
+
+    filterOptions.forEach(option => {
+        const button = createElement(
+            'button',
+            'task-filters__button',
+            option.text
+        );
+
+        button.type = 'button';
+        button.dataset.filter = option.value;
+
+        if (option.value === 'all') {
+            button.classList.add('task-filters__button--active');
+        }
+
+        filters.append(button);
+    });
+
+    return filters;
+}

@@ -1,10 +1,10 @@
-
 import {
     createElement,
     createTaskForm,
     createTaskElement,
     createTaskList,
-    createSearchInput
+    createSearchInput,
+    createTaskFilters
 } from './dom.js';
 
 import { createTask } from './tasks.js';
@@ -37,11 +37,15 @@ const taskForm = createTaskForm();
 const { section, list } = createTaskList();
 const searchInput = createSearchInput();
 
-app.append(header, taskForm, searchInput, section);
+const taskFilters = createTaskFilters();
+
+app.append(header, taskForm, searchInput, taskFilters, section);
 document.body.append(app);
 
 // Массив для хранения задач
 const tasks = [];
+
+let currentFilter = 'all';
 
 
 // Создание карточки задачи со всеми обработчиками
@@ -149,9 +153,18 @@ function renderTasks() {
 
     const searchQuery = searchInput.value.toLowerCase().trim();
 
-    const filteredTasks = tasks.filter(task =>
-        task.title.toLowerCase().includes(searchQuery)
-    );
+    const filteredTasks = tasks.filter(task => {
+        const matchesSearch = task.title
+            .toLowerCase()
+            .includes(searchQuery);
+
+        const matchesFilter =
+            currentFilter === 'all' ||
+            (currentFilter === 'active' && !task.completed) ||
+            (currentFilter === 'completed' && task.completed);
+
+        return matchesSearch && matchesFilter;
+    });
 
     filteredTasks.forEach(task => {
         const taskElement = createTaskCard(task);
@@ -159,12 +172,34 @@ function renderTasks() {
     });
 }
 
-
 // Поиск задач при вводе текста
 searchInput.addEventListener('input', () => {
     renderTasks();
 });
 
+taskFilters.addEventListener('click', (event) => {
+    const button = event.target.closest('.task-filters__button');
+
+    if (!button) {
+        return;
+    }
+
+    currentFilter = button.dataset.filter;
+
+    const filterButtons = taskFilters.querySelectorAll(
+        '.task-filters__button'
+    );
+
+    filterButtons.forEach(filterButton => {
+        filterButton.classList.remove(
+            'task-filters__button--active'
+        );
+    });
+
+    button.classList.add('task-filters__button--active');
+
+    renderTasks();
+});
 
 // Добавление новой задачи
 taskForm.addEventListener('submit', (event) => {
