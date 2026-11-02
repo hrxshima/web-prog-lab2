@@ -106,3 +106,13 @@ export function createTaskList() {
         list
     };
 }
+
+export function createSearchInput() {
+    const searchInput = createElement('input', 'search-input');
+
+    searchInput.type = 'search';
+    searchInput.placeholder = 'Поиск задач...';
+    searchInput.name = 'search';
+
+    return searchInput;
+}
