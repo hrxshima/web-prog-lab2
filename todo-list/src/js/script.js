@@ -74,6 +74,18 @@ taskForm.addEventListener('submit', (event) => {
             taskElement.classList.remove('task--completed');
         }
     });
+
+    const deleteButton = taskElement.querySelector('.task__delete');
+
+    deleteButton.addEventListener('click', () => {
+        const taskIndex = tasks.findIndex(item => item.id === task.id);
+    
+        if (taskIndex !== -1) {
+            tasks.splice(taskIndex, 1);
+        }
+    
+        taskElement.remove();
+    });    
     
     list.append(taskElement);
     

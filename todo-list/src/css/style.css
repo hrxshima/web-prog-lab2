@@ -131,3 +131,22 @@ body {
     color: #999999;
     opacity: 0.7;
 }
+
+.task__delete {
+    padding: 8px 12px;
+
+    background-color: transparent;
+    color: #999999;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.task__delete:hover {
+    background-color: #f5eeee;
+    color: #b44b4b;
+    border-color: #e5caca;
+}
