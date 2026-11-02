@@ -30,6 +30,9 @@ export function createTaskForm() {
     const dateInput = createElement('input', 'task-form__date');
     dateInput.type = 'date';
     dateInput.name = 'date';
+    dateInput.min = '2020-01-01';
+    dateInput.max = '2100-12-31';
+    dateInput.required = true;
 
     const submitButton = createElement(
         'button',
@@ -46,4 +49,40 @@ export function createTaskForm() {
     );
 
     return form;
+}
+
+export function createTaskElement(task) {
+    const article = createElement('article', 'task');
+
+    const checkbox = createElement('input', 'task__checkbox');
+    checkbox.type = 'checkbox';
+    checkbox.checked = task.completed;
+
+    const title = createElement('h3', 'task__title', task.title);
+
+    const date = createElement('time', 'task__date', task.date);
+    date.dateTime = task.date;
+
+    article.append(checkbox, title, date);
+
+    return article;
+}
+
+export function createTaskList() {
+    const section = createElement('section', 'tasks-section');
+
+    const title = createElement(
+        'h2',
+        'tasks-section__title',
+        'Мои задачи'
+    );
+
+    const list = createElement('div', 'tasks-list');
+
+    section.append(title, list);
+
+    return {
+        section,
+        list
+    };
 }

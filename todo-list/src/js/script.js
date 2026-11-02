@@ -1,4 +1,11 @@
-import { createElement, createTaskForm } from './dom.js';
+import {
+    createElement,
+    createTaskForm,
+    createTaskElement,
+    createTaskList
+} from './dom.js';
+
+import { createTask } from './tasks.js';
 
 // Подключение CSS
 const link = document.createElement('link');
@@ -23,10 +30,39 @@ const subtitle = createElement(
 
 header.append(title, subtitle);
 
-app.append(header);
-
 const taskForm = createTaskForm();
 
-app.append(taskForm);
+const { section, list } = createTaskList();
+
+
+app.append(header, taskForm, section);
 
 document.body.append(app);
+
+// Массив для хранения задач
+const tasks = [];
+
+
+// Обработка отправки формы
+taskForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const titleInput = taskForm.querySelector('[name="title"]');
+    const dateInput = taskForm.querySelector('[name="date"]');
+
+    const title = titleInput.value.trim();
+    const date = dateInput.value;
+
+    if (!title || !date) {
+        return;
+    }
+
+    const task = createTask(title, date);
+
+    tasks.push(task);
+
+    const taskElement = createTaskElement(task);
+    list.append(taskElement);
+
+    taskForm.reset();
+});

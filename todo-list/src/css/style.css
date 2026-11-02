@@ -84,3 +84,44 @@ body {
 .task-form__button:hover {
     background-color: #454545;
 }
+
+.tasks-section__title {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.tasks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.task {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 18px;
+
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #eae8e4;
+}
+
+.task__checkbox {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #8d806e;
+}
+
+.task__title {
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.task__date {
+    font-size: 13px;
+    color: #888888;
+}
