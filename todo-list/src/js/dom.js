@@ -145,3 +145,26 @@ export function createTaskFilters() {
 
     return filters;
 }
+
+export function createTaskSort() {
+    const sortSelect = createElement('select', 'task-sort');
+
+    const options = [
+        { value: 'asc', text: 'Сначала ближайшие' },
+        { value: 'desc', text: 'Сначала поздние' }
+    ];
+
+    options.forEach(option => {
+        const optionElement = createElement(
+            'option',
+            '',
+            option.text
+        );
+
+        optionElement.value = option.value;
+
+        sortSelect.append(optionElement);
+    });
+
+    return sortSelect;
+}

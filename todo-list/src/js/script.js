@@ -4,7 +4,8 @@ import {
     createTaskElement,
     createTaskList,
     createSearchInput,
-    createTaskFilters
+    createTaskFilters,
+    createTaskSort
 } from './dom.js';
 
 import { createTask } from './tasks.js';
@@ -39,7 +40,16 @@ const searchInput = createSearchInput();
 
 const taskFilters = createTaskFilters();
 
-app.append(header, taskForm, searchInput, taskFilters, section);
+const taskSort = createTaskSort();
+
+app.append(
+    header,
+    taskForm,
+    searchInput,
+    taskFilters,
+    taskSort,
+    section
+);
 document.body.append(app);
 
 // Массив для хранения задач
@@ -166,7 +176,15 @@ function renderTasks() {
         return matchesSearch && matchesFilter;
     });
 
-    filteredTasks.forEach(task => {
+    const sortedTasks = [...filteredTasks].sort((a, b) => {
+        if (taskSort.value === 'asc') {
+            return a.date.localeCompare(b.date);
+        }
+
+        return b.date.localeCompare(a.date);
+    });
+
+    sortedTasks.forEach(task => {
         const taskElement = createTaskCard(task);
         list.append(taskElement);
     });
@@ -174,6 +192,10 @@ function renderTasks() {
 
 // Поиск задач при вводе текста
 searchInput.addEventListener('input', () => {
+    renderTasks();
+});
+
+taskSort.addEventListener('change', () => {
     renderTasks();
 });
 

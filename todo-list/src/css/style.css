@@ -235,3 +235,23 @@ body {
     color: #ffffff;
     border-color: #292929;
 }
+
+.task-sort {
+    padding: 10px 14px;
+    margin-bottom: 24px;
+
+    background-color: #ffffff;
+    color: #555555;
+
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-family: inherit;
+    cursor: pointer;
+}
+
+.task-sort:focus {
+    outline: 2px solid #b8a58a;
+    border-color: transparent;
+}
