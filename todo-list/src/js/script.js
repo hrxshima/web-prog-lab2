@@ -62,7 +62,20 @@ taskForm.addEventListener('submit', (event) => {
     tasks.push(task);
 
     const taskElement = createTaskElement(task);
-    list.append(taskElement);
 
+    const checkbox = taskElement.querySelector('.task__checkbox');
+    
+    checkbox.addEventListener('change', () => {
+        task.completed = checkbox.checked;
+    
+        if (task.completed) {
+            taskElement.classList.add('task--completed');
+        } else {
+            taskElement.classList.remove('task--completed');
+        }
+    });
+    
+    list.append(taskElement);
+    
     taskForm.reset();
 });

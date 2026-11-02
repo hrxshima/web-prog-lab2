@@ -125,3 +125,9 @@ body {
     font-size: 13px;
     color: #888888;
 }
+
+.task--completed .task__title {
+    text-decoration: line-through;
+    color: #999999;
+    opacity: 0.7;
+}
