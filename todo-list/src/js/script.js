@@ -36,6 +36,13 @@ header.append(title, subtitle);
 const taskForm = createTaskForm();
 const { section, list } = createTaskList();
 const searchInput = createSearchInput();
+const searchField = createElement('div', 'search-field');
+const clearSearchButton = createElement('button', 'search-clear');
+clearSearchButton.type = 'button';
+clearSearchButton.hidden = true;
+clearSearchButton.setAttribute('aria-label', 'Очистить поиск');
+clearSearchButton.title = 'Очистить поиск';
+searchField.append(searchInput, clearSearchButton);
 
 const taskFilters = createTaskFilters();
 
@@ -44,7 +51,7 @@ const taskSort = createTaskSort();
 app.append(
     header,
     taskForm,
-    searchInput,
+    searchField,
     taskFilters,
     taskSort,
     section
@@ -86,6 +93,7 @@ function createTaskCard(task) {
         );
 
         saveTasks(tasks);
+        renderTasks();
     });
 
     // Удаление задачи
@@ -125,10 +133,11 @@ function createTaskCard(task) {
 
         const cancelButton = createElement(
             'button',
-            'task__cancel',
-            'Отмена'
+            'task__cancel'
         );
         cancelButton.type = 'button';
+        cancelButton.setAttribute('aria-label', 'Отменить редактирование');
+        cancelButton.title = 'Отменить редактирование';
 
         const titleElement = taskElement.querySelector('.task__title');
         const dateElement = taskElement.querySelector('.task__date');
@@ -222,7 +231,15 @@ enableDragAndDrop(list, () => {
 
 // Поиск задач при вводе текста
 searchInput.addEventListener('input', () => {
+    clearSearchButton.hidden = !searchInput.value;
     renderTasks();
+});
+
+clearSearchButton.addEventListener('click', () => {
+    searchInput.value = '';
+    clearSearchButton.hidden = true;
+    renderTasks();
+    searchInput.focus();
 });
 
 taskSort.addEventListener('change', () => {

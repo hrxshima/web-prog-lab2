@@ -116,6 +116,7 @@ export function createSearchInput() {
     searchInput.type = 'search';
     searchInput.placeholder = 'поиск задач...';
     searchInput.name = 'search';
+    searchInput.setAttribute('aria-label', 'Поиск задач по названию');
 
     return searchInput;
 }
@@ -152,6 +153,7 @@ export function createTaskFilters() {
 
 export function createTaskSort() {
     const sortSelect = createElement('select', 'task-sort');
+    sortSelect.setAttribute('aria-label', 'Порядок задач');
 
     const options = [
         { value: 'manual', text: 'вручную' },

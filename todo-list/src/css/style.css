@@ -122,6 +122,7 @@ select {
 .task-form__input,
 .task-form__date {
     width: 100%;
+    height: 48px;
     min-width: 0;
     padding: 11px;
 
@@ -172,10 +173,14 @@ select {
 
 /* Поиск */
 
+.search-field {
+    position: relative;
+    margin-bottom: 16px;
+}
+
 .search-input {
     width: 100%;
-    padding: 11px;
-    margin-bottom: 16px;
+    padding: 11px 48px 11px 11px;
 
     background-color: var(--white);
     color: var(--midnight);
@@ -185,6 +190,44 @@ select {
 
     font-size: 9px;
     box-shadow: 3px 3px 0 var(--midnight);
+}
+
+.search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.search-clear {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    background: transparent;
+    color: var(--midnight);
+    cursor: pointer;
+}
+
+.search-clear[hidden] {
+    display: none;
+}
+
+.search-clear::before,
+.task__cancel::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: currentColor;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 5'%3E%3Cpath d='M0 0h1v1H0z M4 0h1v1H4z M1 1h1v1H1z M3 1h1v1H3z M2 2h1v1H2z M1 3h1v1H1z M3 3h1v1H3z M0 4h1v1H0z M4 4h1v1H4z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.search-clear:hover {
+    color: var(--rosewood);
 }
 
 
@@ -198,6 +241,7 @@ select {
 }
 
 .task-filters__button {
+    height: 36px;
     padding: 9px 11px;
 
     background-color: var(--white);
@@ -233,16 +277,23 @@ select {
 /* Сортировка */
 
 .task-sort {
-    padding: 9px 11px;
+    appearance: none;
+    height: 36px;
+    padding: 9px 42px 9px 11px;
     margin-bottom: 21px;
 
     background-color: var(--white);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 7 4'%3E%3Cpath fill='%232D3A47' d='M0 0h1v1h1v1h1v1h1V2h1V1h1V0h1v1H6v1H5v1H4v1H3V3H2V2H1V1H0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 14px 8px;
     color: var(--midnight);
 
     border: 2px solid var(--midnight);
     border-radius: 0;
 
-    font-size: 10px;
+    font-size: 8px;
+    line-height: 1.8;
     cursor: pointer;
 
     box-shadow: 3px 3px 0 var(--midnight);
@@ -252,7 +303,7 @@ select {
 /* Заголовок списка */
 
 .tasks-section__title {
-    font-size: 10px;
+    font-size: 12px;
     font-weight: normal;
     line-height: 1.8;
     font-style: normal;
@@ -374,13 +425,26 @@ select {
 }
 
 .task__save {
+    height: 44px;
     background-color: var(--sage);
     color: var(--midnight);
 }
 
 .task__cancel {
+    display: grid;
+    place-items: center;
+    min-width: 36px;
+    min-height: 36px;
     background-color: var(--white);
     color: var(--midnight);
+}
+
+.task-form__date::-webkit-calendar-picker-indicator,
+.task__edit-date::-webkit-calendar-picker-indicator {
+    width: 24px;
+    height: 24px;
+    padding: 2px;
+    cursor: pointer;
 }
 
 
@@ -388,6 +452,7 @@ select {
 
 .task__edit-input,
 .task__edit-date {
+    height: 44px;
     min-width: 0;
     max-width: 100%;
     padding: 8px;
@@ -455,9 +520,12 @@ select {
         padding: 14px;
     }
 
-    .task-form__title,
-    .tasks-section__title {
+    .task-form__title {
         font-size: 8px;
+    }
+
+    .tasks-section__title {
+        font-size: 10px;
     }
 
     .task-form__input,
@@ -475,13 +543,15 @@ select {
     }
 
     .task-filters__button {
+        height: 34px;
         padding: 8px;
         font-size: 7px;
     }
 
     .task-sort {
         width: 100%;
-        font-size: 9px;
+        height: 34px;
+        font-size: 7px;
     }
 
     .task {

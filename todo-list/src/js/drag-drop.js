@@ -5,7 +5,7 @@ export function enableDragAndDrop(list, onDrop) {
     list.addEventListener('dragstart', (event) => {
         const taskElement = event.target.closest('.task');
 
-        if (!taskElement) {
+        if (!taskElement || !taskElement.draggable) {
             return;
         }
 
@@ -18,6 +18,10 @@ export function enableDragAndDrop(list, onDrop) {
     });
 
     list.addEventListener('dragover', (event) => {
+        if (!draggedElement) {
+            return;
+        }
+
         event.preventDefault();
 
         const targetElement = event.target.closest('.task');
