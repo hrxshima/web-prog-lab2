@@ -1,4 +1,3 @@
-
 export function enableDragAndDrop(list, onDrop) {
     let draggedElement = null;
 

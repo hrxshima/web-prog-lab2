@@ -1,4 +1,3 @@
-
 const STORAGE_KEY = 'todo-tasks';
 
 export function loadTasks() {

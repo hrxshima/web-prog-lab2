@@ -150,7 +150,6 @@ export function createTaskFilters() {
     return filters;
 }
 
-
 export function createTaskSort() {
     const sortSelect = createElement('select', 'task-sort');
     sortSelect.setAttribute('aria-label', 'Порядок задач');

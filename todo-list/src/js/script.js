@@ -114,15 +114,19 @@ function createTaskCard(task) {
     const editButton = taskElement.querySelector('.task__edit');
 
     editButton.addEventListener('click', () => {
+        taskElement.classList.add('task--editing');
+        taskElement.draggable = false;
         const titleInput = document.createElement('input');
         titleInput.type = 'text';
         titleInput.value = task.title;
         titleInput.className = 'task__edit-input';
+        titleInput.setAttribute('aria-label', 'Название задачи');
 
         const dateInput = document.createElement('input');
         dateInput.type = 'date';
         dateInput.value = task.date;
         dateInput.className = 'task__edit-date';
+        dateInput.setAttribute('aria-label', 'Дата задачи');
 
         const saveButton = createElement(
             'button',
@@ -130,6 +134,8 @@ function createTaskCard(task) {
             'Сохранить'
         );
         saveButton.type = 'button';
+        saveButton.setAttribute('aria-label', 'Сохранить');
+        saveButton.title = 'Сохранить';
 
         const cancelButton = createElement(
             'button',
