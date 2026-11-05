@@ -599,6 +599,7 @@ select {
     .date-field > input[type="date"] {
         position: absolute;
         inset: 0;
+        z-index: 2;
         width: 100%;
         height: 100%;
         min-height: 0;
@@ -615,17 +616,21 @@ select {
     }
 
     .date-field__value {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
         display: flex;
         align-items: center;
-        height: 100%;
         padding: 0 9px;
         font-size: 8px;
+        line-height: 1.4;
         white-space: nowrap;
         pointer-events: none;
     }
 
     .date-field--edit .date-field__value {
-        justify-content: center;
+        display: grid;
+        place-items: center;
         padding: 0 2px;
         font-size: 7px;
     }
@@ -738,6 +743,7 @@ select {
 
     .task__edit,
     .task__delete {
+        position: relative;
         width: 30px;
         height: 44px;
         padding: 0;
@@ -746,18 +752,28 @@ select {
         place-items: center;
     }
 
+    .task__edit::before,
+    .task__delete::before {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
     .task__edit::before {
-        content: '✎';
-        font-family: monospace;
-        font-size: 22px;
+        content: '';
+        width: 20px;
+        height: 20px;
+        background: currentColor;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M7 0h2v1h1v2H9V2H8V1H7z M6 1h1v1h1v1h1v1H8V3H7V2H6z M5 2h1v1H5z M4 3h1v1H4z M3 4h1v1H3z M2 5h1v1H2z M1 6h1v1H1z M7 4h1v1H7z M6 5h1v1H6z M5 6h1v1H5z M4 7h1v1H4z M3 8h1v1H3z M1 7h1v1h1v1H0V6h1z'/%3E%3C/svg%3E") center / contain no-repeat;
     }
 
     .task__delete::before {
         content: '';
-        width: 16px;
-        height: 16px;
+        width: 20px;
+        height: 20px;
         background: currentColor;
-        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 5'%3E%3Cpath d='M0 0h1v1H0z M4 0h1v1H4z M1 1h1v1H1z M3 1h1v1H3z M2 2h1v1H2z M1 3h1v1H1z M3 3h1v1H3z M0 4h1v1H0z M4 4h1v1H4z'/%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M3 0h4v1H3z M1 1h8v1H1z M0 2h10v1H0z M1 4h1v5H1z M8 4h1v5H8z M2 9h6v1H2z M3 4h1v4H3z M6 4h1v4H6z'/%3E%3C/svg%3E") center / contain no-repeat;
     }
 }
 
