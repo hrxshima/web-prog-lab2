@@ -33,6 +33,11 @@ export function createTaskForm() {
     dateInput.min = '2020-01-01';
     dateInput.max = '2100-12-31';
     dateInput.required = true;
+    dateInput.setAttribute('aria-label', 'Дата новой задачи');
+    const dateField = createDateField(dateInput, 'date-field--new');
+    form.addEventListener('reset', () => {
+        dateField.querySelector('.date-field__value').textContent = 'выберите дату...';
+    });
 
     const submitButton = createElement(
         'button',
@@ -44,11 +49,29 @@ export function createTaskForm() {
     form.append(
         formTitle,
         titleInput,
-        dateInput,
+        dateField,
         submitButton
     );
 
     return form;
+}
+
+export function createDateField(input, className) {
+    const field = createElement('div', `date-field ${className}`);
+    const value = createElement('span', 'date-field__value');
+    value.setAttribute('aria-hidden', 'true');
+
+    function updateValue() {
+        value.textContent = input.value
+            ? input.value.split('-').reverse().join('.')
+            : 'выберите дату...';
+    }
+
+    input.addEventListener('input', updateValue);
+    input.addEventListener('change', updateValue);
+    updateValue();
+    field.append(input, value);
+    return field;
 }
 
 export function createTaskElement(task) {
@@ -72,6 +95,7 @@ export function createTaskElement(task) {
         'Редактировать'
     );
     editButton.type = 'button';
+    editButton.setAttribute('aria-label', 'Редактировать');
 
     const deleteButton = createElement(
         'button',
@@ -79,6 +103,7 @@ export function createTaskElement(task) {
         'Удалить'
     );
     deleteButton.type = 'button';
+    deleteButton.setAttribute('aria-label', 'Удалить');
 
     article.append(
         checkbox,

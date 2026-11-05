@@ -1,5 +1,6 @@
 import {
     createElement,
+    createDateField,
     createTaskForm,
     createTaskElement,
     createTaskList,
@@ -149,7 +150,7 @@ function createTaskCard(task) {
         const dateElement = taskElement.querySelector('.task__date');
 
         titleElement.replaceWith(titleInput);
-        dateElement.replaceWith(dateInput);
+        dateElement.replaceWith(createDateField(dateInput, 'date-field--edit'));
 
         editButton.hidden = true;
         deleteButton.hidden = true;
